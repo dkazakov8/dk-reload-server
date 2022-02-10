@@ -1,0 +1,49 @@
+{
+  "name": "dk-reload-server",
+  "author": "Dmitry Kazakov",
+  "license": "MIT",
+  "version": "1.0.1",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dkazakov8/dk-reload-server.git"
+  },
+  "description": "Reload browser on files change",
+  "scripts": {
+    "analyze:js": "eslint --ignore-path .formatignore --ext \".js,.ts,.tsx\" ./",
+    "format:js": "eslint --ignore-path .formatignore --ext \".js,.ts,.tsx\" --fix",
+    "build": "rm -rf ./dist&&tsc --project tsconfig-compile.json&&cp -r ./src/ssl-local ./dist/ssl-local",
+    "prepublishOnly": "yarn build"
+  },
+  "nyc": {
+    "include": "src"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "set -e&&lint-staged"
+    }
+  },
+  "dependencies": {
+    "chalk": "4.1.2",
+    "chokidar": "3.5.3",
+    "ws": "8.5.0"
+  },
+  "devDependencies": {
+    "@types/node": "17.0.8",
+    "@types/ws": "8.2.0",
+    "dk-eslint-config": "1.0.15",
+    "husky": "4.3.8",
+    "lint-staged": "12.1.7",
+    "react": "17.0.2",
+    "typescript": "4.5.4"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "bugs": {
+    "url": "https://github.com/dkazakov8/dk-reload-server/issues"
+  },
+  "homepage": "https://github.com/dkazakov8/dk-reload-server#readme",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "keywords": []
+}
